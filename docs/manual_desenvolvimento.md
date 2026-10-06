@@ -8,7 +8,8 @@ Guia para a equipe técnica (8 pessoas) que vai construir o sistema. Fluxo simpl
 
 - **Tela 1:** formulário de cadastro de animal (HTML, CSS, JavaScript)
 - **Tela 2:** vitrine pública de adoção (HTML, CSS, JavaScript)
-- **Integração:** Google Apps Script (também JavaScript) — grava na planilha e sobe fotos no Drive
+- **Tela 3:** painel de administração para a Nívea listar e editar animais já cadastrados (HTML, CSS, JavaScript, com senha de acesso)
+- **Integração:** Google Apps Script (também JavaScript) — grava na planilha, sobe fotos no Drive e permite editar cadastros existentes
 - **Banco de dados:** planilha do Google Sheets
 
 Tudo é a mesma linguagem (JavaScript), então não importa quem pega qual parte — a curva de aprendizado é parecida.
@@ -31,10 +32,10 @@ Tudo é a mesma linguagem (JavaScript), então não importa quem pega qual parte
 
 Depois de instalar, configure seu nome e e-mail (uma vez só, no terminal):
 
-```
+\`\`\`
 git config --global user.name "Seu Nome"
 git config --global user.email "seu-email@exemplo.com"
-```
+\`\`\`
 
 ### 2.3 Instalar o VS Code
 
@@ -48,28 +49,28 @@ git config --global user.email "seu-email@exemplo.com"
 
 ## 3. Entrando no projeto
 
-O repositório já está criado: **[https://github.com/Hernandessn/adotecm.git](https://github.com/Hernandessn/adotecm.git)**
+O repositório já está criado: **https://github.com/Hernandessn/adotecm.git**
 
 Para começar a trabalhar:
 
 1. Abra o terminal (ou o terminal integrado do VS Code) na pasta onde quer guardar o projeto
 2. Rode:
 
-```
+\`\`\`
 git clone https://github.com/Hernandessn/adotecm.git
-```
+\`\`\`
 
 3. Entre na pasta criada:
 
-```
+\`\`\`
 cd adotecm
-```
+\`\`\`
 
 4. Abra no VS Code:
 
-```
+\`\`\`
 code .
-```
+\`\`\`
 
 ---
 
@@ -77,41 +78,41 @@ code .
 
 A equipe tem dois perfis diferentes, então o fluxo de Git é diferente para cada um:
 
-### Hernandes e Rony 
+### Hernandes e Rony
 
 - Podem commitar direto na branch principal (`main`) para tarefas do dia a dia.
 - Para partes grandes ou arriscadas (ex: a integração com o Apps Script), criem uma branch separada mesmo assim, só para poder testar sem risco de quebrar o que já está funcionando:
 
-```
+\`\`\`
 git checkout -b nome-da-branch
-```
+\`\`\`
 
 - Antes de começar a trabalhar, sempre atualizem a cópia local:
 
-```
+\`\`\`
 git pull
-```
+\`\`\`
 
-### Marcos, Kallysson, Francisco, Natanael, Pedro Gabriel e Lucas 
+### Marcos, Kallysson, Francisco, Natanael, Pedro Gabriel e Lucas
 
 Para evitar que um erro não identificado quebre o sistema, vocês **não commitam direto na `main`**. O fluxo é:
 
 1. Crie sua própria branch, com seu nome na tarefa:
 
-```
+\`\`\`
 git checkout -b tarefa/marcos-navbar
-```
+\`\`\`
 
 (troque pelo nome da sua tarefa, ex: `tarefa/kallysson-cards`)
 
 2. Trabalhe só nos arquivos da sua tarefa (veja a seção 8 — Divisão de tarefas).
 3. Quando terminar, suba sua branch:
 
-```
+\`\`\`
 git add .
 git commit -m "feat: adiciona estilo do cabeçalho da vitrine"
 git push origin tarefa/marcos-navbar
-```
+\`\`\`
 
 4. Avise o **Hernandes** ou o **Rony** no grupo que terminou, mandando o nome da branch. Um dos dois vai revisar e juntar (merge) com a `main`.
 5. **Não mexa em arquivos fora da sua tarefa.** Se precisar de algo que depende de outra parte (ex: um dado que só existe depois da integração pronta), avise no grupo em vez de tentar resolver sozinho.
@@ -122,9 +123,9 @@ git push origin tarefa/marcos-navbar
 
 Toda vez que salvar um progresso, escreva a mensagem de commit seguindo este padrão:
 
-```
+\`\`\`
 tipo: descrição curta do que foi feito
-```
+\`\`\`
 
 **Tipos mais usados:**
 
@@ -138,11 +139,11 @@ tipo: descrição curta do que foi feito
 
 **Comandos para commitar:**
 
-```
+\`\`\`
 git add .
 git commit -m "feat: adiciona campo de upload de foto"
 git push
-```
+\`\`\`
 
 Se estiver numa branch separada, o primeiro `push` pode pedir um comando extra — o próprio terminal mostra qual comando copiar e colar.
 
@@ -165,7 +166,7 @@ Se estiver numa branch separada, o primeiro `push` pode pedir um comando extra �
 
 ## 7. Boas práticas
 
-- **Nunca** suba senhas, chaves de API ou links de credenciais do Google direto no código. Se o Apps Script precisar de alguma chave, perguntem antes como lidar com isso.
+- **Nunca** suba senhas, chaves de API ou links de credenciais do Google direto no código. Se o Apps Script precisar de alguma chave, perguntem antes como lidar com isso. Isso vale também para a senha da tela de administração — ela não deve aparecer em texto puro no código visível no GitHub.
 - **Teste antes de commitar** — abra o arquivo no navegador (ou use o Live Server do VS Code) para confirmar que não quebrou nada.
 - **Mensagens de commit claras** ajudam o resto do grupo a entender o que mudou sem precisar perguntar.
 - **Dúvida trava mais que erro** — se travar em algo por mais de 20–30 minutos, avisa no grupo em vez de insistir sozinho.
@@ -174,15 +175,23 @@ Se estiver numa branch separada, o primeiro `push` pode pedir um comando extra �
 
 ## 8. Divisão de tarefas
 
-### Hernandes — Integração com Google Apps Script
+### Hernandes — Integração com Google Apps Script + Tela de administração
 
-Parte mais crítica do sistema: se tiver erro aqui, nada mais funciona. Por isso fica com quem já tem mais experiência.
-
+**Apps Script:**
 - Criar o projeto no Google Apps Script e publicá-lo como Web App.
 - Escrever a função que recebe os dados do formulário (via `fetch`) e grava uma nova linha na planilha.
 - Escrever a função que recebe a foto em base64, salva no Google Drive e grava o link gerado na planilha.
 - Escrever a função que lê a planilha e devolve só os animais com status "Não adotado" (para a vitrine pública consumir).
-- Testar as três funções isoladamente antes de avisar o grupo que estão prontas.
+- Escrever a função que lê **todos** os animais da planilha, independente do status (para a tela de administração).
+- Escrever a função que recebe uma edição (ex: mudar o status para "Adotado") e atualiza a linha correspondente na planilha.
+- Testar todas as funções isoladamente antes de avisar o grupo que estão prontas.
+
+**Tela de administração (listar e editar):**
+- Criar uma tela separada (ex: `admin.html`) que lista todos os animais cadastrados, independente de estarem adotados ou não.
+- Ao clicar em um animal da lista, permitir editar seus dados (o mais importante: mudar o status entre "Adotado" / "Não Adotado").
+- Proteger essa tela com uma senha simples, combinada só com a Nívea, para que visitantes da vitrine pública não consigam acessá-la.
+- Essa tela não aparece em nenhum lugar público — o link e a senha só devem ser passados diretamente para a Nívea.
+- Avisar o **Pedro Gabriel** assim que essa tela estiver pronta, para ele tirar prints e documentar o uso no manual da Nívea.
 
 ### Rony — Lógica das duas telas
 
@@ -227,7 +236,7 @@ Não programa — testa o que os outros fizeram e reporta problemas.
 - Preencher o formulário de cadastro várias vezes com dados diferentes (incluindo casos estranhos: nome vazio, foto muito grande, etc.) e anotar o que quebra.
 - Testar o upload de foto em celular e em computador.
 - Conferir se a vitrine atualiza corretamente depois de um novo cadastro.
-- Conferir se um animal marcado como "Adotado" realmente some da vitrine.
+- Conferir se um animal marcado como "Adotado" realmente some da vitrine (testando pela tela de administração, depois que estiver pronta).
 - Testar em pelo menos 2 celulares diferentes, se possível.
 - Reportar cada problema encontrado no grupo, com print e descrição de como reproduzir o erro.
 
@@ -235,7 +244,8 @@ Não programa — testa o que os outros fizeram e reporta problemas.
 
 Não programa — documenta como usar o sistema pronto.
 
-- Depois que o formulário e a vitrine estiverem funcionando, criar um passo a passo (com prints de tela) mostrando como cadastrar um animal, como marcar um animal como "Adotado", e como acessar a página pública da vitrine.
+- Depois que o formulário e a vitrine estiverem funcionando, criar um passo a passo (com prints de tela) mostrando como cadastrar um animal e como acessar a página pública da vitrine.
+- Assim que a **tela de administração** estiver pronta (avisada pelo Hernandes), documentar também como acessar com a senha, listar os animais e marcar um deles como "Adotado".
 - Formato livre: Word, PDF ou Google Docs compartilhado com a Nívea.
 - Trabalhar em paralelo com o Lucas (QA) — se ele encontrar algo pouco intuitivo no sistema, isso deve virar um aviso ou dica no manual.
 - Entregar o manual revisado (sem erro de português, linguagem simples, sem termos técnicos) antes da entrega final do projeto.
