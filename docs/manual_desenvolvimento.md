@@ -1,6 +1,6 @@
 # Manual de Desenvolvimento — Sistema Adote CM
 
-Guia para a equipe técnica (3 pessoas) que vai construir o sistema. Fluxo simplificado, pensado para equipe pequena e prazo curto — sem processo formal de Pull Request.
+Guia para a equipe técnica (8 pessoas) que vai construir o sistema. Fluxo simplificado, pensado para equipe pequena e prazo curto — sem processo formal de Pull Request.
 
 ---
 
