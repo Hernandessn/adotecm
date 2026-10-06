@@ -77,7 +77,7 @@ code .
 
 A equipe tem dois perfis diferentes, então o fluxo de Git é diferente para cada um:
 
-### Hernandes e Rony (já sabem programar)
+### Hernandes e Rony 
 
 - Podem commitar direto na branch principal (`main`) para tarefas do dia a dia.
 - Para partes grandes ou arriscadas (ex: a integração com o Apps Script), criem uma branch separada mesmo assim, só para poder testar sem risco de quebrar o que já está funcionando:
@@ -92,7 +92,7 @@ git checkout -b nome-da-branch
 git pull
 ```
 
-### Marcos, Kallysson, Francisco, Natanael e Lucas (apoiados por IA)
+### Marcos, Kallysson, Francisco, Natanael, Pedro Gabriel e Lucas 
 
 Para evitar que um erro não identificado quebre o sistema, vocês **não commitam direto na `main`**. O fluxo é:
 
@@ -230,3 +230,12 @@ Não programa — testa o que os outros fizeram e reporta problemas.
 - Conferir se um animal marcado como "Adotado" realmente some da vitrine.
 - Testar em pelo menos 2 celulares diferentes, se possível.
 - Reportar cada problema encontrado no grupo, com print e descrição de como reproduzir o erro.
+
+### Pedro Gabriel — Manual de uso para a Nívea
+
+Não programa — documenta como usar o sistema pronto.
+
+- Depois que o formulário e a vitrine estiverem funcionando, criar um passo a passo (com prints de tela) mostrando como cadastrar um animal, como marcar um animal como "Adotado", e como acessar a página pública da vitrine.
+- Formato livre: Word, PDF ou Google Docs compartilhado com a Nívea.
+- Trabalhar em paralelo com o Lucas (QA) — se ele encontrar algo pouco intuitivo no sistema, isso deve virar um aviso ou dica no manual.
+- Entregar o manual revisado (sem erro de português, linguagem simples, sem termos técnicos) antes da entrega final do projeto.
