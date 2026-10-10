@@ -7,7 +7,221 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="pagina-cadastro">
-    <main class="cadastro"></main>
+    <main class="cadastro">
+      <h1 class="cadastro__titulo">Cadastro de Animal</h1>
+
+      <form id="form-cadastro" class="formulario" novalidate>
+        <!-- Nome -->
+        <div class="campo">
+          <label for="nome" class="campo__rotulo">Nome do animal</label>
+          <input
+            class="campo__input"
+            type="text"
+            name="nome"
+            id="nome"
+            required
+          />
+        </div>
+
+        <!-- Mês de entrada -->
+        <div class="campo">
+          <label class="campo__rotulo" for="mesEntrada">Mês de entrada</label>
+          <input
+            class="campo__input"
+            type="month"
+            name="mesEntrada"
+            id="mesEntrada"
+          />
+        </div>
+
+        <!-- Espécie -->
+        <fieldset class="campo">
+          <legend class="campo__rotulo">Espécie</legend>
+          <div class="opcoes">
+            <input
+              class="opcao__radio"
+              type="radio"
+              name="especie"
+              id="especie-cao"
+              value="Cão"
+            />
+            <label class="opcao__rotulo" for="especie-cao">Cão</label>
+
+            <input
+              class="opcao__radio"
+              type="radio"
+              name="especie"
+              id="especie-gato"
+              value="Gato"
+            />
+            <label class="opcao__rotulo" for="especie-gato">Gato</label>
+          </div>
+        </fieldset>
+
+        <!-- Sexo -->
+        <fieldset class="campo">
+          <legend class="campo__rotulo">Sexo</legend>
+          <div class="opcoes">
+            <input
+              class="opcao__radio"
+              type="radio"
+              name="sexo"
+              id="sexo-macho"
+              value="Macho"
+            />
+            <label class="opcao__rotulo" for="sexo-macho">Macho</label>
+
+            <input
+              class="opcao__radio"
+              type="radio"
+              name="sexo"
+              id="sexo-femea"
+              value="Fêmea"
+            />
+            <label class="opcao__rotulo" for="sexo-femea">Fêmea</label>
+          </div>
+        </fieldset>
+
+        <!-- Faixa etária -->
+        <fieldset class="campo">
+          <legend class="campo__rotulo">Faixa etária</legend>
+          <div class="opcoes">
+            <input
+              class="opcao__radio"
+              type="radio"
+              name="faixaEtaria"
+              id="faixa-menos"
+              value="Menos de 6 meses"
+            />
+            <label class="opcao__rotulo" for="faixa-menos"
+              >Menos de 6 meses</label
+            >
+
+            <input
+              class="opcao__radio"
+              type="radio"
+              name="faixaEtaria"
+              id="faixa-mais"
+              value="Mais de 6 meses"
+            />
+            <label class="opcao__rotulo" for="faixa-mais"
+              >Mais de 6 meses</label
+            >
+          </div>
+        </fieldset>
+
+        <!-- Idade aproximada (opcional) -->
+        <div class="campo">
+          <label class="campo__rotulo" for="idadeAproximada">
+            Idade aproximada (opcional)
+          </label>
+          <input
+            class="campo__input"
+            type="text"
+            name="idadeAproximada"
+            id="idadeAproximada"
+            placeholder="Ex.: 2 anos"
+          />
+        </div>
+
+        <!-- Status -->
+        <fieldset class="campo">
+          <legend class="campo__rotulo">Status</legend>
+          <div class="opcoes">
+            <input
+              class="opcao__radio"
+              type="radio"
+              name="status"
+              id="status-adotado"
+              value="Adotado"
+            />
+            <label class="opcao__rotulo" for="status-adotado">Adotado</label>
+
+            <input
+              class="opcao__radio"
+              type="radio"
+              name="status"
+              id="status-nao-adotado"
+              value="Não adotado"
+            />
+            <label class="opcao__rotulo" for="status-nao-adotado"
+              >Não adotado</label
+            >
+          </div>
+        </fieldset>
+
+        <!-- Origem -->
+        <fieldset class="campo">
+          <legend class="campo__rotulo">Origem</legend>
+          <div class="opcoes">
+            <input
+              class="opcao__radio"
+              type="radio"
+              name="origem"
+              id="origem-rua"
+              value="Encontrado na rua"
+            />
+            <label class="opcao__rotulo" for="origem-rua"
+              >Encontrado na rua</label
+            >
+
+            <input
+              class="opcao__radio"
+              type="radio"
+              name="origem"
+              id="origem-tutor"
+              value="Entregue por tutor"
+            />
+            <label class="opcao__rotulo" for="origem-tutor"
+              >Entregue por tutor</label
+            >
+          </div>
+        </fieldset>
+
+        <!-- Foto -->
+        <div class="campo">
+          <label class="campo__rotulo" for="foto">Foto do animal</label>
+          <input
+            class="campo__arquivo"
+            type="file"
+            name="foto"
+            id="foto"
+            accept="image/*"
+          />
+          <img
+            class="campo__previa"
+            id="previa-foto"
+            alt="Prévia da foto selecionada"
+            hidden
+          />
+        </div>
+
+        <!-- Senha -->
+        <div class="campo">
+          <label class="campo__rotulo" for="senha">Senha de acesso</label>
+          <input
+            class="campo__input"
+            type="password"
+            name="senha"
+            id="senha"
+            autocomplete="off"
+          />
+        </div>
+
+        <!-- Mensagem de erro/sucesso -->
+        <p
+          class="formulario__mensagem"
+          id="mensagem-form"
+          role="alert"
+          hidden
+        ></p>
+
+        <!-- Botão salvar -->
+        <button class="botao botao--salvar" type="submit" id="botao-salvar">
+          Salvar Cadastro
+        </button>
+      </form>
+    </main>
 
     <script src="script.js"></script>
   </body>
