@@ -29,4 +29,5 @@ Projeto desenvolvido por discentes do curso de Análise e Desenvolvimento de Sis
 
 ## Documentação
 
-Guia para quem for contribuir com o código: [docs/manual_desenvolvimento.md](docs/manual_desenvolvimento.md)
+- Guia para quem for contribuir com o código: [docs/manual-desenvolvimento.md](docs/manual-desenvolvimento.md)
+- Paleta, componentes de interface e variáveis CSS: [docs/sistema-visual.md](docs/sistema-visual.md)
