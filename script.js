@@ -5,6 +5,8 @@ const API_URL =
 const TENTATIVAS_GET = 3;
 const ESPERA_ENTRE_TENTATIVAS_MS = 1500;
 
+const WHATSAPP_NUMERO = ""; // WhatsApp da ONG
+
 // Imagem padrão (usada quando o animal não tem foto ou a foto não carrega)
 const FOTO_PADRAO =
   "data:image/svg+xml;utf8," +
@@ -119,9 +121,24 @@ function iniciarVitrine() {
     const idade = animal.idadeAproximada || animal.faixaEtaria;
     info.textContent = "Espécie: " + animal.especie + " | " + idade;
 
-    const botao = document.createElement("button");
+    let botao;
+    if (/^\d{12,13}$/.test(WHATSAPP_NUMERO)) {
+      // Com número válido: link que abre o WhatsApp com mensagem pronta
+      const mensagem = "Olá! Tenho interesse em adotar o " + animal.nome + ".";
+      botao = document.createElement("a");
+      botao.href =
+        "https://wa.me/" +
+        WHATSAPP_NUMERO +
+        "?text=" +
+        encodeURIComponent(mensagem);
+      botao.target = "_blank";
+      botao.rel = "noopener";
+    } else {
+      // Sem número configurado: botão sem ação (como antes)
+      botao = document.createElement("button");
+      botao.type = "button";
+    }
     botao.className = "card__botao";
-    botao.type = "button";
     botao.textContent = "Adote-me";
 
     corpo.append(nome, info, botao);
