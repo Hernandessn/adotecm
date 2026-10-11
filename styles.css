@@ -2,3 +2,92 @@
 [hidden] {
   display: none !important;
 }
+
+/* VARIÁVEIS (paleta do documento "Sistema visual AdoteCM") */
+:root {
+  --cor-azul-principal: #1b3a57;
+  --cor-azul-secundario: #294d6b;
+  --cor-borda: #cacac9;
+  --cor-texto-secundario: #555555;
+  --cor-branco: #ffffff;
+  --cor-texto-principal: #222222;
+  --raio-card: 10px;
+  --raio-botao: 6px;
+  --espacamento-padrao: 16px;
+  --largura-maxima: 1200px;
+}
+
+/* GRADE: 3 colunas no computador */
+.grade {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px; /* escolha minha: o PDF não define */
+  max-width: var(--largura-maxima);
+  margin: 0 auto;
+  padding: var(--espacamento-padrao);
+}
+
+/* CARD */
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--cor-branco);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-card);
+  padding: var(--espacamento-padrao);
+  font-family: Arial, sans-serif;
+}
+
+.card__foto {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3; /* mesma proporção da imagem padrão (400x300) */
+  object-fit: cover; /* recorta em vez de distorcer */
+  border-radius: var(--raio-botao);
+  margin-bottom: 12px;
+}
+
+.card__corpo {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* ocupa o espaço que sobra, para alinhar o botão embaixo */
+}
+
+.card__nome {
+  margin: 0 0 4px;
+  font-size: 1.25rem; /* escolha minha */
+  color: var(--cor-texto-principal);
+}
+
+.card__info {
+  margin: 0 0 var(--espacamento-padrao);
+  font-size: 0.95rem; /* escolha minha */
+  color: var(--cor-texto-secundario);
+}
+
+/* BOTÃO "Adote-me" */
+.card__botao {
+  margin-top: auto; /* empurra o botão para o fim do card */
+  min-height: 42px; /* PDF: 40–44px */
+  padding: 10px 16px;
+  background: var(--cor-azul-principal);
+  color: var(--cor-branco);
+  border: 1px solid var(--cor-azul-principal);
+  border-radius: var(--raio-botao);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.card__botao:hover,
+.card__botao:focus-visible {
+  background: var(--cor-azul-secundario); /* escolha minha */
+}
+
+/* CELULAR: 1 coluna */
+@media (max-width: 768px) {
+  .grade {
+    grid-template-columns: 1fr;
+  }
+}
