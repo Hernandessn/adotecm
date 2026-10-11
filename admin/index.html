@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="styles.css">
+<title>Painel Adote CM</title>
+</head>
+<body>
+<header>
+  <img src="../assets/logo-adotecm.png" alt="Logo do Adote CM" width="48" height="48">
+  <h1>Adote CM, painel de animais</h1>
+  <button id="sair" class="hidden">Sair</button>
+</header>
+<main>
+  <form id="login" class="login">
+    <h2>Entrar</h2>
+    <p style="margin:0;color:var(--mut)">Digite a senha do painel.</p>
+    <label for="senha">Senha</label>
+    <input id="senha" type="password" autocomplete="current-password" required>
+    <p class="msg" id="msgLogin" role="alert"></p>
+    <button>Entrar</button>
+  </form>
+  <section id="painel" class="hidden">
+    <div class="bar">
+      <input id="busca" type="search" placeholder="Buscar pelo nome" aria-label="Buscar pelo nome">
+      <select id="filtro" aria-label="Filtrar por situação">
+        <option value="todos">Todos</option>
+        <option value="nao">Disponíveis</option>
+        <option value="sim">Adotados</option>
+      </select>
+      <button id="recarregar" class="sec">Atualizar</button>
+    </div>
+    <div class="cont" id="cont"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+</main>
+
+<dialog id="dlg">
+  <form id="fe" method="dialog">
+    <h2 id="dt">Editar animal</h2>
+    <label for="fNome">Nome</label>
+    <input id="fNome" required maxlength="60">
+    <div class="linha">
+      <div><label for="fEsp">Espécie</label><select id="fEsp"></select></div>
+      <div><label for="fSexo">Sexo</label><select id="fSexo"></select></div>
+      <div><label for="fFaixa">Faixa etária</label><select id="fFaixa"></select></div>
+      <div><label for="fIdade">Idade aproximada</label><input id="fIdade" maxlength="30" placeholder="Ex.: 2 anos"></div>
+      <div><label for="fOrig">Origem</label><select id="fOrig"></select></div>
+      <div><label for="fStatus">Situação</label><select id="fStatus"></select></div>
+    </div>
+    <label for="fFoto">Trocar a foto (opcional)</label>
+    <input id="fFoto" type="file" accept="image/jpeg,image/png,image/webp">
+    <img id="prev" class="prev hidden" alt="Prévia da nova foto">
+    <p class="msg" id="msgDlg" role="alert"></p>
+    <div class="rod">
+      <button type="button" class="sec" id="cancelar">Cancelar</button>
+      <button>Salvar alterações</button>
+    </div>
+  </form>
+</dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="script.js" type="module"></script>
+</body>
+</html>
