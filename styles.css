@@ -1,0 +1,4 @@
+/* Garante que o atributo hidden sempre esconde o elemento */
+[hidden] {
+  display: none !important;
+}

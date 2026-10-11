@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Adote CM</title>
+    <link rel="icon" href="data:," />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="pagina-vitrine">
@@ -32,12 +33,14 @@
           id="busca-nome"
           placeholder="Buscar por nome..."
           aria-label="Buscar por nome"
+          autocomplete="off"
         />
 
         <select
           class="filtros__select"
           id="filtro-especie"
           aria-label="Filtrar por espécie"
+          autocomplete="off"
         >
           <option value="">Todos os animais</option>
           <option value="Cão">Cão</option>
@@ -48,6 +51,7 @@
           class="filtros__select"
           id="filtro-idade"
           aria-label="Filtrar por idade"
+          autocomplete="off"
         >
           <option value="">Todas as idades</option>
           <option value="Menos de 6 meses">Menos de 6 meses</option>
@@ -56,9 +60,18 @@
       </section>
 
       <p class="vitrine__aviso" id="aviso-vitrine" hidden></p>
+      <button
+        class="botao vitrine__tentar"
+        id="botao-tentar"
+        type="button"
+        hidden
+      >
+        Tentar de novo
+      </button>
 
       <section class="grade" id="grade-animais" aria-live="polite"></section>
     </main>
+
     <footer class="rodape"></footer>
 
     <script src="script.js"></script>

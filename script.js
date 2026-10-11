@@ -2,6 +2,9 @@
 const API_URL =
   "https://script.google.com/macros/s/AKfycbyYKhWbEDTLrl2kyCofLlsX4DLmiy5xQJ8kzc2emK9TGd6DkFkILyMalTEQeQZNs2bh/exec";
 
+const TENTATIVAS_GET = 3;
+const ESPERA_ENTRE_TENTATIVAS_MS = 1500;
+
 // Imagem padrão (usada quando o animal não tem foto ou a foto não carrega)
 const FOTO_PADRAO =
   "data:image/svg+xml;utf8," +
@@ -13,15 +16,50 @@ const FOTO_PADRAO =
       "Sem foto</text></svg>",
   );
 
+function esperar(ms) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, ms);
+  });
+}
+
+/* BUSCA DA LISTA (GET) - até 3 tentativas
+   Só vale para o GET. O POST NUNCA é repetido automaticamente. */
+async function buscarAnimaisComTentativas() {
+  for (let tentativa = 1; tentativa <= TENTATIVAS_GET; tentativa++) {
+    try {
+      const resposta = await fetch(API_URL);
+      if (!resposta.ok) throw new Error("HTTP " + resposta.status);
+
+      const texto = await resposta.text();
+      const dados = JSON.parse(texto); // se vier página HTML, dá erro aqui
+      if (!Array.isArray(dados)) throw new Error("A resposta não é uma lista");
+
+      return dados;
+    } catch (erro) {
+      console.warn(
+        "Tentativa " + tentativa + " de buscar animais falhou:",
+        erro,
+      );
+      if (tentativa < TENTATIVAS_GET) {
+        await esperar(ESPERA_ENTRE_TENTATIVAS_MS);
+      }
+    }
+  }
+  throw new Error("As " + TENTATIVAS_GET + " tentativas falharam");
+}
+
 /* VITRINE (só roda em index.html) */
 let todosOsAnimais = [];
 
 function iniciarVitrine() {
   const grade = document.getElementById("grade-animais");
   const aviso = document.getElementById("aviso-vitrine");
+  const botaoTentar = document.getElementById("botao-tentar");
   const busca = document.getElementById("busca-nome");
   const filtroEspecie = document.getElementById("filtro-especie");
   const filtroIdade = document.getElementById("filtro-idade");
+
+  let carregou = false; // só filtra depois que a lista chegou
 
   function mostrarAviso(texto) {
     aviso.textContent = texto;
@@ -92,6 +130,8 @@ function iniciarVitrine() {
   }
 
   function mostrarAnimais() {
+    if (!carregou) return;
+
     const textoBusca = normalizar(busca.value);
     const especie = filtroEspecie.value;
     const faixa = filtroIdade.value;
@@ -121,27 +161,26 @@ function iniciarVitrine() {
   }
 
   async function carregarAnimais() {
+    carregou = false;
+    botaoTentar.hidden = true;
+    grade.replaceChildren();
     mostrarAviso("Carregando animais...");
-    try {
-      const resposta = await fetch(API_URL);
-      const dados = await resposta.json();
 
-      if (!Array.isArray(dados)) {
-        throw new Error("Resposta inesperada da API");
-      }
-      todosOsAnimais = dados;
+    try {
+      todosOsAnimais = await buscarAnimaisComTentativas();
+      carregou = true;
       mostrarAnimais();
     } catch (erro) {
-      console.error("Erro ao carregar a vitrine:", erro);
-      mostrarAviso(
-        "Não foi possível carregar os animais. Tente novamente mais tarde.",
-      );
+      console.error("Não foi possível carregar a vitrine:", erro);
+      mostrarAviso("Não foi possível carregar os animais");
+      botaoTentar.hidden = false;
     }
   }
 
   busca.addEventListener("input", mostrarAnimais);
   filtroEspecie.addEventListener("change", mostrarAnimais);
   filtroIdade.addEventListener("change", mostrarAnimais);
+  botaoTentar.addEventListener("click", carregarAnimais);
 
   carregarAnimais();
 }
@@ -159,9 +198,19 @@ function iniciarCadastro() {
   const botao = document.getElementById("botao-salvar");
 
   let fotoBase64 = ""; // foto já reduzida, pronta para enviar
+  let enviando = false; // trava contra clique duplo
 
-  function mostrarMensagem(texto, tipo) {
+  // comLinkVitrine: usado quando o resultado é incerto
+  function mostrarMensagem(texto, tipo, comLinkVitrine) {
     mensagem.textContent = texto;
+    if (comLinkVitrine) {
+      const link = document.createElement("a");
+      link.href = "index.html";
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.textContent = "Abrir a vitrine";
+      mensagem.append(" ", link);
+    }
     mensagem.className = "formulario__mensagem formulario__mensagem--" + tipo;
     mensagem.hidden = false;
   }
@@ -184,9 +233,13 @@ function iniciarCadastro() {
           const canvas = document.createElement("canvas");
           canvas.width = Math.round(imagem.width * escala);
           canvas.height = Math.round(imagem.height * escala);
-          canvas
-            .getContext("2d")
-            .drawImage(imagem, 0, 0, canvas.width, canvas.height);
+
+          // Fundo branco: PNG transparente viraria preto no JPEG
+          const ctx = canvas.getContext("2d");
+          ctx.fillStyle = "#ffffff";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(imagem, 0, 0, canvas.width, canvas.height);
+
           resolve(canvas.toDataURL("image/jpeg", 0.8));
         };
         imagem.src = leitor.result;
@@ -213,11 +266,15 @@ function iniciarCadastro() {
     }
   });
 
-  // Converte "2026-10" (do input) em "10/2026" (o que a API quer)
+  // Aceita "2026-10" (seletor de mês) ou "10/2026" (navegador sem seletor).
+  // Devolve "MM/AAAA", "" se vazio, ou null se o formato for inválido.
   function formatarMes(valor) {
+    valor = valor.trim();
     if (!valor) return "";
-    const partes = valor.split("-");
-    return partes[1] + "/" + partes[0];
+    const iso = valor.match(/^(\d{4})-(\d{2})$/);
+    if (iso) return iso[2] + "/" + iso[1];
+    if (/^(0[1-9]|1[0-2])\/\d{4}$/.test(valor)) return valor;
+    return null;
   }
 
   function valorSelecionado(nomeCampo) {
@@ -227,7 +284,7 @@ function iniciarCadastro() {
     return marcado ? marcado.value : "";
   }
 
-  // Monta o objeto com os nomes exatos que a API espera
+  // Monta o objeto com os nomes exatos que a API espera (sem "acao")
   function coletarDados() {
     return {
       nome: form.nome.value.trim(),
@@ -243,9 +300,11 @@ function iniciarCadastro() {
     };
   }
 
-  // Devolve a mensagem do primeiro campo faltando, ou "" se está tudo ok
+  // Devolve a mensagem do primeiro problema, ou "" se está tudo ok
   function validar(dados) {
     if (!dados.nome) return "Preencha o nome do animal.";
+    if (dados.mesEntrada === null)
+      return "Informe o mês no formato MM/AAAA (ex.: 10/2026).";
     if (!dados.especie) return "Escolha a espécie.";
     if (!dados.sexo) return "Escolha o sexo.";
     if (!dados.faixaEtaria) return "Escolha a faixa etária.";
@@ -255,24 +314,115 @@ function iniciarCadastro() {
     return "";
   }
 
-  form.addEventListener("submit", function (evento) {
+  // Códigos de erro da API (só para respostas com sucesso: false)
+  const MENSAGENS_ERRO = {
+    nao_autorizado: "Senha incorreta.",
+    foto_muito_grande: "A foto é muito grande. Tente outra.",
+    tipo_de_imagem_invalido: "Tipo de imagem não aceito. Use JPG ou PNG.",
+  };
+
+  const ROTULOS_CAMPOS = {
+    nome: "nome do animal",
+    especie: "espécie",
+    sexo: "sexo",
+    faixaEtaria: "faixa etária",
+    origem: "origem",
+    status: "status",
+    senha: "senha",
+  };
+
+  function traduzirErro(codigo) {
+    codigo = String(codigo || "");
+    if (MENSAGENS_ERRO[codigo]) return MENSAGENS_ERRO[codigo];
+
+    if (codigo.startsWith("campo_obrigatorio_")) {
+      const campo = codigo.replace("campo_obrigatorio_", "");
+      return "Preencha o campo: " + (ROTULOS_CAMPOS[campo] || campo) + ".";
+    }
+    if (codigo.startsWith("valor_invalido_")) {
+      const campo = codigo.replace("valor_invalido_", "");
+      return (
+        "Valor inválido no campo: " + (ROTULOS_CAMPOS[campo] || campo) + "."
+      );
+    }
+    // Erro confirmado, mas com código que não conhecemos
+    console.warn("Código de erro desconhecido:", codigo);
+    return "O cadastro não foi salvo. Confira os dados e tente de novo.";
+  }
+
+  form.addEventListener("submit", async function (evento) {
     evento.preventDefault();
+    if (enviando) return; // clique duplo
     esconderMensagem();
 
     const dados = coletarDados();
-    const erro = validar(dados);
-    if (erro) {
-      mostrarMensagem(erro, "erro");
+    const erroValidacao = validar(dados);
+    if (erroValidacao) {
+      mostrarMensagem(erroValidacao, "erro");
       return;
     }
 
-    // O envio (POST) entra na parte 2. Por enquanto, só confere os dados.
-    const copia = Object.assign({}, dados, {
-      senha: "***",
-      foto: dados.foto ? "(foto de " + dados.foto.length + " caracteres)" : "",
-    });
-    console.log("Dados prontos para enviar:", copia);
-    mostrarMensagem("Dados válidos! (envio ainda não ligado)", "sucesso");
+    enviando = true;
+    botao.disabled = true;
+    botao.textContent = "Salvando...";
+
+    try {
+      // O POST é enviado UMA vez só. Nunca repetimos automaticamente.
+      let resultado = null;
+      let textoResposta = "";
+
+      try {
+        // Sem header Content-Type, senão dá erro de CORS
+        const resposta = await fetch(API_URL, {
+          method: "POST",
+          body: JSON.stringify(dados),
+        });
+        textoResposta = await resposta.text();
+        resultado = JSON.parse(textoResposta);
+      } catch (falha) {
+        // falha de rede ou resposta que não é JSON (ex.: página HTML)
+        console.error("Falha ao enviar/ler a resposta do cadastro:", falha);
+        resultado = null;
+      }
+
+      const ehObjeto =
+        resultado !== null &&
+        typeof resultado === "object" &&
+        !Array.isArray(resultado);
+
+      if (ehObjeto && resultado.sucesso === true) {
+        // 1) Deu certo
+        const senha = dados.senha; // mantém a senha para o próximo cadastro
+        form.reset();
+        fotoBase64 = "";
+        previa.hidden = true;
+        previa.removeAttribute("src");
+        form.senha.value = senha;
+        mostrarMensagem(
+          "Animal cadastrado com sucesso!" +
+            (resultado.id ? " (ID " + resultado.id + ")" : ""),
+          "sucesso",
+        );
+      } else if (ehObjeto && resultado.sucesso === false) {
+        // 2) Erro confirmado: NÃO limpa o formulário e deixa tentar de novo
+        mostrarMensagem(traduzirErro(resultado.erro), "erro");
+      } else {
+        // 3) Resultado incerto: pode ter gravado. Não reenvia.
+        console.error(
+          "Resposta inesperada da API (primeiros 500 caracteres):",
+          textoResposta.slice(0, 500),
+        );
+        mostrarMensagem(
+          "Não conseguimos confirmar o cadastro. Confira a lista antes de tentar de novo.",
+          "erro",
+          true,
+        );
+      }
+    } finally {
+      enviando = false;
+      botao.disabled = false;
+      botao.textContent = "Salvar Cadastro";
+    }
   });
 }
 
