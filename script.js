@@ -446,3 +446,43 @@ function iniciarCadastro() {
 if (document.getElementById("form-cadastro")) {
   iniciarCadastro();
 }
+
+/* MENU RESPONSIVO DO CABEÇALHO (roda em qualquer página com cabeçalho) */
+function iniciarMenu() {
+  const cabecalho = document.querySelector(".cabecalho");
+  const botao = cabecalho && cabecalho.querySelector(".menu-botao");
+  const menu = cabecalho && cabecalho.querySelector(".menu");
+  if (!botao || !menu) return;
+
+  // Só agora o CSS recolhe o menu: sem JavaScript, os links ficam visíveis
+  cabecalho.classList.add("cabecalho--js");
+
+  function definirAberto(aberto) {
+    cabecalho.classList.toggle("cabecalho--aberto", aberto);
+    botao.setAttribute("aria-expanded", String(aberto));
+  }
+
+  botao.addEventListener("click", function () {
+    definirAberto(botao.getAttribute("aria-expanded") !== "true");
+  });
+
+  // Esc fecha o menu e devolve o foco ao botão
+  cabecalho.addEventListener("keydown", function (evento) {
+    if (evento.key === "Escape" && botao.getAttribute("aria-expanded") === "true") {
+      definirAberto(false);
+      botao.focus();
+    }
+  });
+
+  // Clicar num link fecha o menu (útil para links de âncora na mesma página)
+  menu.addEventListener("click", function (evento) {
+    if (evento.target.closest("a")) definirAberto(false);
+  });
+
+  // Ao voltar para tela larga, o menu aberto deixa de fazer sentido
+  window.matchMedia("(min-width: 768px)").addEventListener("change", function (e) {
+    if (e.matches) definirAberto(false);
+  });
+}
+
+iniciarMenu();
