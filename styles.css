@@ -179,7 +179,141 @@ body {
 .cabecalho--js.cabecalho--aberto .menu {
   display: flex;
 }
+    /* Rodapé: azul principal com texto branco */
+    .rodape {
+      background-color: var(--cor-azul-principal);
+      color: var(--cor-branco);
+      padding: 40px 8% 20px;
+    }
 
+    .rodape-conteudo {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: flex-start;
+      gap: 30px;
+      max-width: var(--largura-maxima);
+      margin: 0 auto;
+    }
+
+    .rodape-marca {
+      grid-column: 2;
+      grid-row: 1;
+      text-align: center;
+    }
+
+    .rodape-contato {
+      grid-column: 3;
+      grid-row: 1;
+      justify-self: end;
+    }
+
+    .rodape-logo {
+      display: block;
+      width: 90px;
+      height: auto;
+      margin: 0 auto 10px;
+    }
+
+    .rodape-nome {
+      margin: 0;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .rodape-slogan {
+      grid-column: 1;
+      grid-row: 1;
+      align-self: center;
+      justify-self: start;
+    }
+
+    .rodape-slogan p {
+      max-width: 300px;
+      margin: 0;
+      line-height: 1.6;
+      font-size: 18px;
+    }
+
+    .rodape-contato h3 {
+      margin: 0 0 15px;
+      font-size: 18px;
+    }
+
+    .rodape-links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .rodape-links a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--cor-branco);
+      text-decoration: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .rodape-links a:hover,
+    .rodape-links a:focus-visible {
+      opacity: 0.78;
+      transform: translateX(3px);
+      outline: 2px solid var(--cor-branco);
+      outline-offset: 4px;
+    }
+
+    .icone {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      flex: 0 0 30px;
+      width: 30px;
+      height: 30px;
+      border: 1px solid var(--cor-branco);
+      border-radius: 50%;
+      color: var(--cor-branco);
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .rodape-final {
+      max-width: var(--largura-maxima);
+      margin: 30px auto 0;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .rodape-final p {
+      margin: 0;
+    }
+
+    @media (max-width: 600px) {
+      .rodape-conteudo {
+        grid-template-columns: 1fr;
+      }
+
+      .rodape-slogan,
+      .rodape-marca,
+      .rodape-contato {
+        grid-column: 1;
+        grid-row: auto;
+        justify-self: stretch;
+      }
+
+      .rodape-slogan {
+        text-align: center;
+      }
+
+      .rodape-slogan p {
+        margin: 0 auto;
+      }
+
+      .rodape {
+        padding: 30px 6% 20px;
+      }
+    }
 /* Tablet e computador: marca | links no centro | perfil */
 @media (min-width: 768px) {
   .cabecalho {
