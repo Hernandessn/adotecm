@@ -246,4 +246,4 @@ $("recarregar").onclick = async () => {
   if (!senha) return;
   const r = await lerLista();
   if (r === "ok") mostrar(true); else sair();
-})();
+})()}<footer> class="rodape" ></footer>
