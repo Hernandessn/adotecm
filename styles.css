@@ -456,3 +456,182 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+
+
+/* ===== Formulário de cadastro — Natanael ===== */
+
+.pagina-cadastro {
+  --azul-marinho: #1f2a44;
+  --azul-marinho-escuro: #162033;
+  --creme: #f7f1e3;
+  --creme-escuro: #e8dfc8;
+  --cinza-texto: #4a4f5c;
+  --erro: #b3261e;
+  --raio: 999px;
+  --raio-campo: 12px;
+  --altura-toque: 48px;
+}
+
+.pagina-cadastro .campo {
+  margin-bottom: 24px;
+}
+
+.pagina-cadastro .campo__rotulo,
+.pagina-cadastro .campo > label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--azul-marinho);
+}
+
+.pagina-cadastro .campo__input,
+.pagina-cadastro .campo input[type="text"],
+.pagina-cadastro .campo input[type="file"],
+.pagina-cadastro .campo input[type="number"],
+.pagina-cadastro .campo input[type="date"],
+.pagina-cadastro .campo select,
+.pagina-cadastro .campo textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--altura-toque);
+  padding: 12px 16px;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--azul-marinho);
+  background: #fff;
+  border: 2px solid var(--creme-escuro);
+  border-radius: var(--raio-campo);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.pagina-cadastro .campo__input:focus,
+.pagina-cadastro .campo input:focus,
+.pagina-cadastro .campo select:focus,
+.pagina-cadastro .campo textarea:focus {
+  outline: none;
+  border-color: var(--azul-marinho);
+  box-shadow: 0 0 0 3px rgb(31 42 68 / 15%);
+}
+
+.pagina-cadastro .campo input[type="file"] {
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.pagina-cadastro .campo input[type="file"]::file-selector-button {
+  margin-right: 12px;
+  padding: 8px 16px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--creme);
+  background: var(--azul-marinho);
+  border: none;
+  border-radius: var(--raio);
+  cursor: pointer;
+}
+
+.pagina-cadastro .opcoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pagina-cadastro .opcoes input[type="radio"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.pagina-cadastro .opcoes label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  min-width: 96px;
+  min-height: var(--altura-toque);
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--azul-marinho);
+  background: var(--creme);
+  border: 2px solid var(--azul-marinho);
+  border-radius: var(--raio);
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s, color 0.2s, transform 0.1s;
+}
+
+.pagina-cadastro .opcoes label:hover {
+  background: var(--creme-escuro);
+}
+
+.pagina-cadastro .opcoes label:active {
+  transform: scale(0.97);
+}
+
+.pagina-cadastro .opcoes input[type="radio"]:checked + label {
+  color: var(--creme);
+  background: var(--azul-marinho);
+}
+
+.pagina-cadastro .opcoes input[type="radio"]:focus-visible + label {
+  outline: 3px solid var(--azul-marinho);
+  outline-offset: 3px;
+}
+
+.pagina-cadastro .btn-salvar {
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  margin-top: 32px;
+  padding: 14px 24px;
+  font: inherit;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--creme);
+  background: var(--azul-marinho);
+  border: none;
+  border-radius: var(--raio);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.pagina-cadastro .btn-salvar:hover {
+  background: var(--azul-marinho-escuro);
+}
+
+.pagina-cadastro .btn-salvar:active {
+  transform: scale(0.98);
+}
+
+.pagina-cadastro .btn-salvar:focus-visible {
+  outline: 3px solid var(--azul-marinho);
+  outline-offset: 3px;
+}
+
+.pagina-cadastro .btn-salvar:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.pagina-cadastro .campo .erro {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  color: var(--erro);
+}
+
+@media (min-width: 768px) {
+  .pagina-cadastro .opcoes label {
+    flex: 0 0 auto;
+  }
+
+  .pagina-cadastro .btn-salvar {
+    width: auto;
+    min-width: 260px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
