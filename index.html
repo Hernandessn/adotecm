@@ -9,13 +9,26 @@
   </head>
   <body class="pagina-vitrine">
     <header class="cabecalho">
-      <a href="index.html" class="cabecalho__logo">Adote CM</a>
-      <nav class="menu">
-        <a href="index.html" class="menu__link">Início</a>
+      <a href="index.html" class="cabecalho__logo" aria-label="Adote CM - página inicial">
+        <img class="cabecalho__imagem" src="./assets/logo-adotecm.png" alt="" width="256" height="255" />
+        <span class="cabecalho__nome">Adote CM</span>
+      </a>
+      <nav class="menu" id="menu-principal" aria-label="Navegação principal">
+        <a href="index.html" class="menu__link" aria-current="page">Início</a>
         <a href="#sobre" class="menu__link">Sobre</a>
         <a href="#contato" class="menu__link">Contato</a>
       </nav>
-      <span class="cabecalho__perfil" aria-hidden="true"></span>
+      <a href="#" class="cabecalho__perfil" aria-label="Perfil do usuário">
+        <svg class="cabecalho__icone" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="8" r="3" />
+          <path d="M5.5 19a6.5 6.5 0 0 1 13 0" />
+        </svg>
+      </a>
+      <button class="menu-botao" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu-principal">
+        <svg class="cabecalho__icone" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false">
+          <path d="M5 8h14M5 12h14M5 16h14" />
+        </svg>
+      </button>
     </header>
 
     <main class="vitrine">

@@ -3,18 +3,249 @@
   display: none !important;
 }
 
-/* VARIÁVEIS (paleta do documento "Sistema visual AdoteCM") */
+/* VARIÁVEIS (paleta oficial: sistema-visual.md) */
 :root {
   --cor-azul-principal: #1b3a57;
   --cor-azul-secundario: #294d6b;
+  --cor-azul-claro: #dce7ef;
+  --cor-fundo: #f1efe8;
   --cor-borda: #cacac9;
   --cor-texto-secundario: #555555;
+
   --cor-branco: #ffffff;
   --cor-texto-principal: #222222;
+  --cor-alerta: #b42318;
+
   --raio-card: 10px;
   --raio-botao: 6px;
   --espacamento-padrao: 16px;
   --largura-maxima: 1200px;
+
+  --cor-creme: #fafce4; /* mesma cor da logo */
+}
+
+/* BASE MÍNIMA */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto-principal);
+  font-family: Arial, sans-serif;
+}
+
+/* CABEÇALHO E MENU (tarefa/marcos-navbar)
+   Barra azul-marinho com a logo creme, links cremes e ícones em quadrado
+   azul secundário. A logo é creme, por isso precisa de fundo escuro. */
+.cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 8px;
+  width: min(100% - 32px, var(--largura-maxima));
+  margin: 12px auto;
+  padding: 8px 12px;
+  background-color: var(--cor-azul-principal);
+  border-radius: 12px;
+  color: var(--cor-creme);
+}
+
+.cabecalho__logo {
+  flex: 1 1 auto; /* empurra perfil e botão para a direita */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 4px;
+  border-radius: var(--raio-botao);
+  color: var(--cor-creme);
+  text-decoration: none;
+}
+
+.cabecalho__imagem {
+  display: block;
+  height: 40px;
+  width: auto; /* mantém a proporção */
+}
+
+.cabecalho__nome {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+.menu {
+  order: 4;
+  flex: 1 1 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* cada link fica do tamanho do texto, e a barra também */
+  padding-top: 8px;
+  margin-top: 8px;
+  border-top: 1px solid rgba(250, 252, 228, 0.25);
+}
+
+.menu__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 44px; /* alvo de toque confortável */
+  padding: 0 12px;
+  border-radius: var(--raio-botao);
+  color: var(--cor-creme);
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.menu__link[aria-current="page"] {
+  font-weight: 700;
+}
+
+/* Barra creme sob a palavra: cresce da esquerda para a direita */
+.menu__link::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 6px;
+  height: 3px;
+  border-radius: 2px;
+  background-color: var(--cor-creme);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.menu__link:hover::after,
+.menu__link:focus-visible::after,
+.menu__link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+/* Ícones de perfil e menu: quadrado azul secundário com traço creme */
+.cabecalho__perfil,
+.menu-botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background-color: var(--cor-azul-secundario);
+  color: var(--cor-creme);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.cabecalho__perfil:hover,
+.menu-botao:hover {
+  background-color: var(--cor-creme);
+  color: var(--cor-azul-principal);
+}
+
+.cabecalho__logo:hover {
+  opacity: 0.85;
+}
+
+.cabecalho__logo:focus-visible,
+.menu__link:focus-visible,
+.cabecalho__perfil:focus-visible,
+.menu-botao:focus-visible {
+  outline: 2px solid var(--cor-creme);
+  outline-offset: 2px;
+}
+
+/* Com JavaScript, o menu vira recolhível no celular.
+   Sem JavaScript, os links continuam sempre visíveis. */
+.menu-botao {
+  display: none;
+}
+
+.cabecalho--js .menu-botao {
+  display: inline-flex;
+}
+
+.cabecalho--js .menu {
+  display: none;
+}
+
+.cabecalho--js.cabecalho--aberto .menu {
+  display: flex;
+}
+
+/* Tablet e computador: marca | links no centro | perfil */
+@media (min-width: 768px) {
+  .cabecalho {
+    flex-wrap: nowrap;
+    gap: 16px;
+    padding: 10px 16px;
+  }
+
+  .cabecalho__logo {
+    flex: 0 0 auto;
+  }
+
+  .cabecalho__imagem {
+    height: 48px;
+  }
+
+  .menu,
+  .cabecalho--js .menu {
+    display: flex;
+    order: 0;
+    flex: 1 1 auto;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    gap: 4px;
+    padding-top: 0;
+    margin-top: 0;
+    border-top: 0;
+  }
+
+  .menu__link {
+    padding: 0 14px;
+  }
+
+  .menu__link::after {
+    left: 14px;
+    right: 14px;
+  }
+
+  .cabecalho--js .menu-botao {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .menu,
+  .cabecalho--js .menu {
+    gap: 16px;
+  }
+
+  .menu__link {
+    padding: 0 18px;
+  }
+
+  .menu__link::after {
+    left: 18px;
+    right: 18px;
+  }
+}
+
+/* Respeita quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  .cabecalho *,
+  .cabecalho *::after {
+    transition: none;
+  }
 }
 
 /* GRADE: 3 colunas no computador */
