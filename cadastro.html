@@ -8,222 +8,322 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="pagina-cadastro">
-    <main class="cadastro">
-      <h1 class="cadastro__titulo">Cadastro de Animal</h1>
+    <!-- Cabeçalho (igual ao do index.html) -->
+    <header class="cabecalho">
+      <a href="index.html" class="cabecalho__logo" aria-label="Adote CM - página inicial">
+        <img class="cabecalho__imagem" src="./assets/logo-adotecm.png" alt="" width="256" height="255" />
+        <span class="cabecalho__nome">Adote CM</span>
+      </a>
+      <nav class="menu" id="menu-principal" aria-label="Navegação principal">
+        <a href="index.html" class="menu__link">Início</a>
+        <a href="index.html#sobre" class="menu__link">Sobre</a>
+        <a href="index.html#contato" class="menu__link">Contato</a>
+      </nav>
+      <a href="#" class="cabecalho__perfil" aria-label="Perfil do usuário">
+        <svg class="cabecalho__icone" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="8" r="3" />
+          <path d="M5.5 19a6.5 6.5 0 0 1 13 0" />
+        </svg>
+      </a>
+      <button class="menu-botao" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu-principal">
+        <svg class="cabecalho__icone" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false">
+          <path d="M5 8h14M5 12h14M5 16h14" />
+        </svg>
+      </button>
+    </header>
 
-      <form id="form-cadastro" class="formulario" novalidate>
-        <!-- Nome -->
-        <div class="campo">
-          <label for="nome" class="campo__rotulo">Nome do animal</label>
-          <input
-            class="campo__input"
-            type="text"
-            name="nome"
-            id="nome"
-            required
-          />
-        </div>
+    <main>
+      <section class="cadastro">
+        <h1 class="cadastro__titulo">
+          <svg class="ico ico--cheio ico--titulo" viewBox="0 0 24 24" aria-hidden="true">
+            <ellipse cx="5" cy="11" rx="2" ry="2.8" />
+            <ellipse cx="9.5" cy="6" rx="2" ry="2.8" />
+            <ellipse cx="14.5" cy="6" rx="2" ry="2.8" />
+            <ellipse cx="19" cy="11" rx="2" ry="2.8" />
+            <path d="M12 12c-3 0-6 3.5-6 6 0 2 1.8 2.8 3.5 2.4 1-.3 1.7-.5 2.5-.5s1.5.2 2.5.5c1.7.4 3.5-.4 3.5-2.4 0-2.5-3-6-6-6z" />
+          </svg>
+          Cadastro de Animal
+        </h1>
 
-        <!-- Mês de entrada -->
-        <div class="campo">
-          <label class="campo__rotulo" for="mesEntrada">Mês de entrada</label>
-          <input
-            class="campo__input"
-            type="month"
-            name="mesEntrada"
-            id="mesEntrada"
-            placeholder="MM/AAAA"
-          />
-        </div>
-
-        <!-- Espécie -->
-        <fieldset class="campo">
-          <legend class="campo__rotulo">Espécie</legend>
-          <div class="opcoes">
-            <input
-              class="opcao__radio"
-              type="radio"
-              name="especie"
-              id="especie-cao"
-              value="Cão"
-            />
-            <label class="opcao__rotulo" for="especie-cao">Cão</label>
-
-            <input
-              class="opcao__radio"
-              type="radio"
-              name="especie"
-              id="especie-gato"
-              value="Gato"
-            />
-            <label class="opcao__rotulo" for="especie-gato">Gato</label>
+        <form id="form-cadastro" class="formulario" novalidate>
+          <!-- Nome -->
+          <div class="campo">
+            <label for="nome" class="campo__rotulo">
+              <svg class="ico ico--cheio" viewBox="0 0 24 24" aria-hidden="true">
+                <ellipse cx="5" cy="11" rx="2" ry="2.8" />
+                <ellipse cx="9.5" cy="6" rx="2" ry="2.8" />
+                <ellipse cx="14.5" cy="6" rx="2" ry="2.8" />
+                <ellipse cx="19" cy="11" rx="2" ry="2.8" />
+                <path d="M12 12c-3 0-6 3.5-6 6 0 2 1.8 2.8 3.5 2.4 1-.3 1.7-.5 2.5-.5s1.5.2 2.5.5c1.7.4 3.5-.4 3.5-2.4 0-2.5-3-6-6-6z" />
+              </svg>
+              Nome do animal
+            </label>
+            <input class="campo__input" type="text" name="nome" id="nome" required />
           </div>
-        </fieldset>
 
-        <!-- Sexo -->
-        <fieldset class="campo">
-          <legend class="campo__rotulo">Sexo</legend>
-          <div class="opcoes">
-            <input
-              class="opcao__radio"
-              type="radio"
-              name="sexo"
-              id="sexo-macho"
-              value="Macho"
-            />
-            <label class="opcao__rotulo" for="sexo-macho">Macho</label>
-
-            <input
-              class="opcao__radio"
-              type="radio"
-              name="sexo"
-              id="sexo-femea"
-              value="Fêmea"
-            />
-            <label class="opcao__rotulo" for="sexo-femea">Fêmea</label>
+          <!-- Mês de entrada -->
+          <div class="campo">
+            <label class="campo__rotulo" for="mesEntrada">
+              <svg class="ico ico--linha" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="16" rx="2" />
+                <path d="M3 10h18M8 3v4M16 3v4" />
+              </svg>
+              Mês de entrada
+            </label>
+            <input class="campo__input" type="month" name="mesEntrada" id="mesEntrada" placeholder="MM/AAAA" />
           </div>
-        </fieldset>
 
-        <!-- Faixa etária -->
-        <fieldset class="campo">
-          <legend class="campo__rotulo">Faixa etária</legend>
-          <div class="opcoes">
-            <input
-              class="opcao__radio"
-              type="radio"
-              name="faixaEtaria"
-              id="faixa-menos"
-              value="Menos de 6 meses"
-            />
-            <label class="opcao__rotulo" for="faixa-menos"
-              >Menos de 6 meses</label
-            >
+          <!-- Espécie -->
+          <fieldset class="campo">
+            <legend class="campo__rotulo">
+              <svg class="ico ico--cheio" viewBox="0 0 24 24" aria-hidden="true">
+                <ellipse cx="5" cy="11" rx="2" ry="2.8" />
+                <ellipse cx="9.5" cy="6" rx="2" ry="2.8" />
+                <ellipse cx="14.5" cy="6" rx="2" ry="2.8" />
+                <ellipse cx="19" cy="11" rx="2" ry="2.8" />
+                <path d="M12 12c-3 0-6 3.5-6 6 0 2 1.8 2.8 3.5 2.4 1-.3 1.7-.5 2.5-.5s1.5.2 2.5.5c1.7.4 3.5-.4 3.5-2.4 0-2.5-3-6-6-6z" />
+              </svg>
+              Espécie
+            </legend>
+            <div class="opcoes">
+              <input class="opcao__radio" type="radio" name="especie" id="especie-cao" value="Cão" />
+              <label class="opcao__rotulo" for="especie-cao">
+                <svg class="ico ico--cheio" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 4C6 4 3.5 5 3.5 9v4c0 1.4 1.2 2.2 2.4 1.7L8 13.5V6z" />
+                  <path d="M15 4c3 0 5.5 1 5.5 5v4c0 1.4-1.2 2.2-2.4 1.7L16 13.5V6z" />
+                  <rect x="7.5" y="5" width="9" height="11" rx="4.5" />
+                  <ellipse cx="12" cy="18" rx="3.5" ry="2.5" />
+                </svg>
+                Cão
+              </label>
 
-            <input
-              class="opcao__radio"
-              type="radio"
-              name="faixaEtaria"
-              id="faixa-mais"
-              value="Mais de 6 meses"
-            />
-            <label class="opcao__rotulo" for="faixa-mais"
-              >Mais de 6 meses</label
-            >
+              <input class="opcao__radio" type="radio" name="especie" id="especie-gato" value="Gato" />
+              <label class="opcao__rotulo" for="especie-gato">
+                <svg class="ico ico--cheio" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 3l5 3h6l5-3v9a8 8 0 0 1-16 0V3z" />
+                </svg>
+                Gato
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Sexo -->
+          <fieldset class="campo">
+            <legend class="campo__rotulo">
+              <svg class="ico ico--linha" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="10" cy="14" r="6" />
+                <path d="M14.5 9.5 21 3m0 0h-5m5 0v5" />
+              </svg>
+              Sexo
+            </legend>
+            <div class="opcoes">
+              <input class="opcao__radio" type="radio" name="sexo" id="sexo-macho" value="Macho" />
+              <label class="opcao__rotulo" for="sexo-macho">
+                <svg class="ico ico--linha" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="10" cy="14" r="6" />
+                  <path d="M14.5 9.5 21 3m0 0h-5m5 0v5" />
+                </svg>
+                Macho
+              </label>
+
+              <input class="opcao__radio" type="radio" name="sexo" id="sexo-femea" value="Fêmea" />
+              <label class="opcao__rotulo" for="sexo-femea">
+                <svg class="ico ico--linha" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="9" r="6" />
+                  <path d="M12 15v7M9 19h6" />
+                </svg>
+                Fêmea
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Faixa etária -->
+          <fieldset class="campo">
+            <legend class="campo__rotulo">
+              <svg class="ico ico--linha" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="16" rx="2" />
+                <path d="M3 10h18M8 3v4M16 3v4" />
+              </svg>
+              Faixa etária
+            </legend>
+            <div class="opcoes">
+              <input class="opcao__radio" type="radio" name="faixaEtaria" id="faixa-menos" value="Menos de 6 meses" />
+              <label class="opcao__rotulo" for="faixa-menos">
+                <svg class="ico ico--cheio ico--p" viewBox="0 0 24 24" aria-hidden="true">
+                  <ellipse cx="5" cy="11" rx="2" ry="2.8" />
+                  <ellipse cx="9.5" cy="6" rx="2" ry="2.8" />
+                  <ellipse cx="14.5" cy="6" rx="2" ry="2.8" />
+                  <ellipse cx="19" cy="11" rx="2" ry="2.8" />
+                  <path d="M12 12c-3 0-6 3.5-6 6 0 2 1.8 2.8 3.5 2.4 1-.3 1.7-.5 2.5-.5s1.5.2 2.5.5c1.7.4 3.5-.4 3.5-2.4 0-2.5-3-6-6-6z" />
+                </svg>
+                Menos de 6 meses
+              </label>
+
+              <input class="opcao__radio" type="radio" name="faixaEtaria" id="faixa-mais" value="Mais de 6 meses" />
+              <label class="opcao__rotulo" for="faixa-mais">
+                <svg class="ico ico--cheio" viewBox="0 0 24 24" aria-hidden="true">
+                  <ellipse cx="5" cy="11" rx="2" ry="2.8" />
+                  <ellipse cx="9.5" cy="6" rx="2" ry="2.8" />
+                  <ellipse cx="14.5" cy="6" rx="2" ry="2.8" />
+                  <ellipse cx="19" cy="11" rx="2" ry="2.8" />
+                  <path d="M12 12c-3 0-6 3.5-6 6 0 2 1.8 2.8 3.5 2.4 1-.3 1.7-.5 2.5-.5s1.5.2 2.5.5c1.7.4 3.5-.4 3.5-2.4 0-2.5-3-6-6-6z" />
+                </svg>
+                Mais de 6 meses
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Idade aproximada (opcional) -->
+          <div class="campo">
+            <label class="campo__rotulo" for="idadeAproximada">Idade aproximada (opcional)</label>
+            <input class="campo__input" type="text" name="idadeAproximada" id="idadeAproximada" placeholder="Ex.: 2 anos" />
           </div>
-        </fieldset>
 
-        <!-- Idade aproximada (opcional) -->
-        <div class="campo">
-          <label class="campo__rotulo" for="idadeAproximada">
-            Idade aproximada (opcional)
-          </label>
-          <input
-            class="campo__input"
-            type="text"
-            name="idadeAproximada"
-            id="idadeAproximada"
-            placeholder="Ex.: 2 anos"
-          />
-        </div>
+          <!-- Status -->
+          <fieldset class="campo">
+            <legend class="campo__rotulo">
+              <svg class="ico ico--linha" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21s-8-5.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.5-8 11-8 11z" />
+              </svg>
+              Status
+            </legend>
+            <div class="opcoes">
+              <input class="opcao__radio" type="radio" name="status" id="status-adotado" value="Adotado" />
+              <label class="opcao__rotulo" for="status-adotado">
+                <svg class="ico ico--linha" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="m8 12 3 3 5-6" />
+                </svg>
+                Adotado
+              </label>
 
-        <!-- Status -->
-        <fieldset class="campo">
-          <legend class="campo__rotulo">Status</legend>
-          <div class="opcoes">
-            <input
-              class="opcao__radio"
-              type="radio"
-              name="status"
-              id="status-adotado"
-              value="Adotado"
-            />
-            <label class="opcao__rotulo" for="status-adotado">Adotado</label>
+              <input class="opcao__radio" type="radio" name="status" id="status-nao-adotado" value="Não adotado" />
+              <label class="opcao__rotulo" for="status-nao-adotado">
+                <svg class="ico ico--linha" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="m9 9 6 6m0-6-6 6" />
+                </svg>
+                Não adotado
+              </label>
+            </div>
+          </fieldset>
 
-            <input
-              class="opcao__radio"
-              type="radio"
-              name="status"
-              id="status-nao-adotado"
-              value="Não adotado"
-            />
-            <label class="opcao__rotulo" for="status-nao-adotado"
-              >Não adotado</label
-            >
+          <!-- Origem -->
+          <fieldset class="campo">
+            <legend class="campo__rotulo">
+              <svg class="ico ico--linha" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z" />
+                <circle cx="12" cy="10" r="2.5" />
+              </svg>
+              Origem
+            </legend>
+            <div class="opcoes">
+              <input class="opcao__radio" type="radio" name="origem" id="origem-rua" value="Encontrado na rua" />
+              <label class="opcao__rotulo" for="origem-rua">
+                <svg class="ico ico--linha" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M3 11 12 4l9 7M5 10v10h14V10M10 20v-6h4v6" />
+                </svg>
+                Encontrado na rua
+              </label>
+
+              <input class="opcao__radio" type="radio" name="origem" id="origem-tutor" value="Entregue por tutor" />
+              <label class="opcao__rotulo" for="origem-tutor">
+                <svg class="ico ico--linha" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 21c0-4 3.5-6 8-6s8 2 8 6" />
+                </svg>
+                Entregue por tutor
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Foto -->
+          <div class="campo">
+            <label class="campo__rotulo" for="foto">
+              <svg class="ico ico--linha" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 8h3l2-3h6l2 3h3v12H4z" />
+                <circle cx="12" cy="13.5" r="3.5" />
+              </svg>
+              Foto do animal
+            </label>
+            <input class="campo__arquivo" type="file" name="foto" id="foto" accept="image/*" />
+            <label class="upload" for="foto">
+              <svg class="ico ico--linha ico--grande" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 8h3l2-3h6l2 3h3v12H4z" />
+                <circle cx="12" cy="13.5" r="3.5" />
+              </svg>
+              Toque para adicionar foto
+            </label>
+            <img class="campo__previa" id="previa-foto" alt="Prévia da foto selecionada" hidden />
           </div>
-        </fieldset>
 
-        <!-- Origem -->
-        <fieldset class="campo">
-          <legend class="campo__rotulo">Origem</legend>
-          <div class="opcoes">
-            <input
-              class="opcao__radio"
-              type="radio"
-              name="origem"
-              id="origem-rua"
-              value="Encontrado na rua"
-            />
-            <label class="opcao__rotulo" for="origem-rua"
-              >Encontrado na rua</label
-            >
-
-            <input
-              class="opcao__radio"
-              type="radio"
-              name="origem"
-              id="origem-tutor"
-              value="Entregue por tutor"
-            />
-            <label class="opcao__rotulo" for="origem-tutor"
-              >Entregue por tutor</label
-            >
+          <!-- Senha -->
+          <div class="campo">
+            <label class="campo__rotulo" for="senha">Senha de acesso</label>
+            <input class="campo__input" type="password" name="senha" id="senha" autocomplete="off" />
           </div>
-        </fieldset>
 
-        <!-- Foto -->
-        <div class="campo">
-          <label class="campo__rotulo" for="foto">Foto do animal</label>
-          <input
-            class="campo__arquivo"
-            type="file"
-            name="foto"
-            id="foto"
-            accept="image/*"
-          />
-          <img
-            class="campo__previa"
-            id="previa-foto"
-            alt="Prévia da foto selecionada"
-            hidden
-          />
-        </div>
+          <!-- Mensagem de erro/sucesso -->
+          <p class="formulario__mensagem" id="mensagem-form" role="alert" hidden></p>
 
-        <!-- Senha -->
-        <div class="campo">
-          <label class="campo__rotulo" for="senha">Senha de acesso</label>
-          <input
-            class="campo__input"
-            type="password"
-            name="senha"
-            id="senha"
-            autocomplete="off"
-          />
-        </div>
-
-        <!-- Mensagem de erro/sucesso -->
-        <p
-          class="formulario__mensagem"
-          id="mensagem-form"
-          role="alert"
-          hidden
-        ></p>
-
-        <!-- Botão salvar -->
-        <button class="botao botao--salvar" type="submit" id="botao-salvar">
-          Salvar Cadastro
-        </button>
-      </form>
+          <!-- Botão salvar -->
+          <button class="botao botao--salvar" type="submit" id="botao-salvar">Salvar Cadastro</button>
+        </form>
+      </section>
     </main>
+
+    <!-- Rodapé (igual ao do index.html) -->
+    <footer class="rodape">
+      <div class="rodape-conteudo">
+        <div class="rodape-slogan">
+          <h3>Adote com amor</h3>
+          <p>Adoção responsável transforma vidas.</p>
+        </div>
+
+        <div class="rodape-marca">
+          <img class="rodape-logo" src="./assets/logo-adotecm.png" alt="Logo do Adote CM" width="128" height="128" />
+          <p class="rodape-nome">AdoteCM</p>
+        </div>
+
+        <div class="rodape-contato">
+          <h3>Contato</h3>
+          <nav class="rodape-links" aria-label="Contato">
+            <a href="mailto:contato@adotecm.org" aria-label="Enviar e-mail para AdoteCM">
+              <span class="icone" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <path d="M3 7l9 6 9-6" />
+                </svg>
+              </span>
+              contato@adotecm.org
+            </a>
+            <a href="https://instagram.com/adotecm" target="_blank" rel="noopener noreferrer" aria-label="Instagram do AdoteCM (abre em nova aba)">
+              <span class="icone" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="0.5" />
+                </svg>
+              </span>
+              @adotecm
+            </a>
+            <a href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp do AdoteCM (abre em nova aba)">
+              <span class="icone" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                  <path d="M4 20l1.3-4A8 8 0 1 1 8.2 18.8L4 20z" />
+                  <path d="M9 9c0 3 3 6 6 6l1-1.5-2-1-1 .8c-.8-.4-1.6-1.2-2-2l.8-1-1-2L9 9z" />
+                </svg>
+              </span>
+              (00) 00000-0000
+            </a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="rodape-final">
+        <p>&copy; AdoteCM &bull; Projeto de extensão</p>
+      </div>
+    </footer>
 
     <script src="script.js"></script>
   </body>
