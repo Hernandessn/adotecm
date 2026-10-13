@@ -5,17 +5,17 @@ const API_URL =
 const TENTATIVAS_GET = 3;
 const ESPERA_ENTRE_TENTATIVAS_MS = 1500;
 
-const WHATSAPP_NUMERO = ""; // WhatsApp da ONG
+const WHATSAPP_NUMERO = "558681051163";// WhatsApp da ONG
 
 // Imagem padrão (usada quando o animal não tem foto ou a foto não carrega)
 const FOTO_PADRAO =
   "data:image/svg+xml;utf8," +
   encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300">' +
-      '<rect width="100%" height="100%" fill="#d9dee5"/>' +
-      '<text x="50%" y="50%" font-family="sans-serif" font-size="22" ' +
-      'fill="#5b6778" text-anchor="middle" dominant-baseline="middle">' +
-      "Sem foto</text></svg>",
+    '<rect width="100%" height="100%" fill="#d9dee5"/>' +
+    '<text x="50%" y="50%" font-family="sans-serif" font-size="22" ' +
+    'fill="#5b6778" text-anchor="middle" dominant-baseline="middle">' +
+    "Sem foto</text></svg>",
   );
 
 function esperar(ms) {
@@ -417,7 +417,7 @@ function iniciarCadastro() {
         form.senha.value = senha;
         mostrarMensagem(
           "Animal cadastrado com sucesso!" +
-            (resultado.id ? " (ID " + resultado.id + ")" : ""),
+          (resultado.id ? " (ID " + resultado.id + ")" : ""),
           "sucesso",
         );
       } else if (ehObjeto && resultado.sucesso === false) {
