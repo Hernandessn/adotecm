@@ -84,7 +84,7 @@ Logo abaixo, o painel mostra quantos animais estão na lista, por exemplo "3 de 
 
 ![Cartão de um animal disponível, com os botões Marcar como adotado e Editar](imagens/manual-de-uso/painel-cartao.png)
 
-Marcou o animal errado? Toque em **Desfazer adoção** no mesmo cartão, e ele volta para a vitrine.
+Marcou o animal errado? Toque em **Desfazer adoção** no mesmo cartão e confirme com **OK**. Ele volta para a vitrine.
 
 ### Corrigir um cadastro
 
@@ -125,7 +125,7 @@ Abra a vitrine, ou recarregue a página se ela já estiver aberta, e procure o a
 | "Nenhum animal disponível no momento" | Nenhum animal está como "Não adotado" no momento. |
 | "Nenhum animal encontrado com esses filtros" | A busca ou os filtros não acharam ninguém. Apague a busca ou volte os filtros para "Todos". |
 
-## Dicas e o que fazer quando algo dá errado
+## Dicas e cuidados
 
 ### Para a foto ficar boa na vitrine
 
@@ -138,9 +138,3 @@ Abra a vitrine, ou recarregue a página se ela já estiver aberta, e procure o a
 
 - Use sempre o cadastro e o painel, e não altere a planilha à mão. As páginas só aceitam as opções certas. Na planilha, um erro de digitação pode tirar um animal da vitrine.
 - Não compartilhe a senha. Se alguém que sabia a senha sair da ONG, peça à equipe para trocá-la.
-
-### A quem pedir ajuda
-
-> **A incluir:** nome e contato de quem atende a ONG depois da entrega.
-
-> **A incluir:** avisos que surgirem nos testes do Lucas.
