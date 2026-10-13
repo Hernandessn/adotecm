@@ -8,9 +8,9 @@ O sistema do Adote CM tem três páginas. Duas são só suas e pedem senha. A te
 
 | Página | Para que serve | Quem vê | Endereço |
 | --- | --- | --- | --- |
-| Cadastro de Animal | Registrar cada animal que chega à ONG | Só você, com senha | [hernandessn.github.io/adotecm/cadastro.html](https://hernandessn.github.io/adotecm/cadastro.html) |
-| Painel de Administração | Ver todos os animais, marcar quem foi adotado e corrigir um cadastro | Só você, com senha | [hernandessn.github.io/adotecm/admin](https://hernandessn.github.io/adotecm/admin/) |
-| Vitrine "Adote um Amigo" | Mostrar os animais que esperam um lar | Qualquer pessoa | [hernandessn.github.io/adotecm](https://hernandessn.github.io/adotecm/) |
+| Cadastro de Animal | Registrar cada animal que chega à ONG | Só você, com senha | [adotecm.vercel.app/cadastro.html](https://adotecm.vercel.app/cadastro.html) |
+| Painel de Administração | Ver todos os animais, marcar quem foi adotado e corrigir um cadastro | Só você, com senha | [adotecm.vercel.app/admin/index.html](https://adotecm.vercel.app/admin/index.html) |
+| Vitrine "Adote um Amigo" | Mostrar os animais que esperam um lar | Qualquer pessoa | [adotecm.vercel.app/index.html](https://adotecm.vercel.app/index.html) |
 
 Guarde os dois primeiros endereços nos favoritos do navegador, porque eles não aparecem em nenhum botão do site. Este manual fala em tocar, como no celular. No computador, é só clicar.
 
@@ -20,7 +20,7 @@ Tudo o que você cadastra fica guardado numa planilha do Google e aparece sozinh
 
 Faça um cadastro para cada animal que chega à ONG. Se ele estiver como "Não adotado", aparece na vitrine na próxima vez que alguém abrir a página.
 
-1. Abra o endereço do cadastro: [hernandessn.github.io/adotecm/cadastro.html](https://hernandessn.github.io/adotecm/cadastro.html).
+1. Abra o endereço do cadastro: [adotecm.vercel.app/cadastro.html](https://adotecm.vercel.app/cadastro.html).
 2. Escreva o **Nome do animal**.
 3. Em **Mês de entrada**, escolha o mês em que ele chegou à ONG. Se não souber, pode deixar em branco.
 4. Toque nas opções de **Espécie**, **Sexo** e **Faixa etária**. A opção escolhida fica azul-escura.
@@ -55,7 +55,7 @@ Quem marca a adoção é o Painel de Administração. Ele mostra todos os animai
 
 ### Entrar no painel
 
-1. Abra o endereço do painel: [hernandessn.github.io/adotecm/admin](https://hernandessn.github.io/adotecm/admin/).
+1. Abra o endereço do painel: [adotecm.vercel.app/admin/index.html](https://adotecm.vercel.app/admin/index.html).
 2. Digite a senha do painel e toque em **Entrar**.
 
 ![Tela de entrada do painel, com o campo Senha e o botão Entrar](imagens/manual-de-uso/painel-entrar.png)
@@ -100,7 +100,7 @@ Se aparecer "Não deu para confirmar a resposta", o painel já atualizou a lista
 
 ## Como acessar a vitrine
 
-A vitrine é a página pública do Adote CM, e é esse o endereço para divulgar nas redes sociais: [hernandessn.github.io/adotecm](https://hernandessn.github.io/adotecm/). Ela mostra só os animais marcados como "Não adotado".
+A vitrine é a página pública do Adote CM, e é esse o endereço para divulgar nas redes sociais: [adotecm.vercel.app/index.html](https://adotecm.vercel.app/index.html). Ela mostra só os animais marcados como "Não adotado".
 
 ![Vitrine aberta no computador: título Adote um Amigo, busca e filtros, e os cartões dos animais](imagens/manual-de-uso/vitrine-computador.png)
 
