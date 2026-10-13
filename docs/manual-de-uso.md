@@ -72,9 +72,9 @@ No alto do painel há três ferramentas:
 - **Lista de situação**: escolha **Todos**, **Disponíveis** ou **Adotados**.
 - **Atualizar**: busca de novo os cadastros, útil se alguém cadastrou um animal em outro aparelho.
 
-Cada animal aparece num cartão com foto, nome, número, espécie, sexo, idade e mês de entrada. Embaixo vem o selo **Disponível** ou **Adotado**.
+Logo abaixo, o painel mostra quantos animais estão na lista, por exemplo "3 de 3 animais". Cada animal aparece num cartão com foto, nome, número, espécie, sexo, idade e mês de entrada. Embaixo vem o selo **Disponível** ou **Adotado**.
 
-> **Print a incluir:** painel aberto, com a busca no alto e os cartões dos animais.
+![Painel aberto: busca pelo nome, lista de situação, botão Atualizar, o contador de animais e o primeiro cartão](imagens/manual-de-uso/painel-lista.png)
 
 ### Marcar a adoção
 
@@ -82,7 +82,7 @@ Cada animal aparece num cartão com foto, nome, número, espécie, sexo, idade e
 2. Aparece a pergunta "Marcar [nome] como adotado? Ele sai da vitrine." Toque em **OK**.
 3. Aparece o aviso "[nome] marcado como adotado." O selo muda para **Adotado** e o animal sai da vitrine.
 
-> **Print a incluir:** cartão de um animal com o botão Marcar como adotado.
+![Cartão de um animal disponível, com os botões Marcar como adotado e Editar](imagens/manual-de-uso/painel-cartao.png)
 
 Marcou o animal errado? Toque em **Desfazer adoção** no mesmo cartão, e ele volta para a vitrine.
 
@@ -92,7 +92,7 @@ Marcou o animal errado? Toque em **Desfazer adoção** no mesmo cartão, e ele v
 2. Corrija o que precisar: nome, espécie, sexo, faixa etária, idade, origem ou situação. Para trocar a foto, use **Trocar a foto (opcional)**.
 3. Toque em **Salvar alterações**. Para sair sem mudar nada, toque em **Cancelar**.
 
-> **Print a incluir:** janela Editar aberta.
+![Janela Editar aberta, com os campos do animal e os botões Cancelar e Salvar alterações](imagens/manual-de-uso/painel-editar.png)
 
 O mês de entrada não aparece nessa janela, então não dá para corrigi-lo pelo painel.
 
